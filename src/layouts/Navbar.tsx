@@ -15,6 +15,7 @@ import logo from '../assets/images/technet-logo.png';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
+import { setUser } from '@/redux/features/user/userSlice';
 
 export default function Navbar() {
   const { user } = useAppSelector((state) => state.user);
@@ -23,6 +24,10 @@ export default function Navbar() {
 
   const handleLogout = () => {
     console.log('Logout');
+    signOut(auth).then(() => {
+      // Sign-out successful.
+      dispatch(setUser(null));
+    });
   };
 
   return (
