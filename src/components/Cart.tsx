@@ -20,14 +20,8 @@ import {
 } from '@/redux/features/cart/cartSlice';
 
 export default function Cart() {
-  const { products } = useAppSelector((state) => state.cart);
+  const { products, total } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-  //! Dummy data
-
-  // const products: IProduct[] = [];
-  const total = 0;
-
-  //! **
 
   return (
     <Sheet>
@@ -59,11 +53,8 @@ export default function Cart() {
                 </p>
               </div>
               <div className="border-l pl-5 flex flex-col justify-between">
-                <Button>
-                  <HiOutlinePlus
-                    onClick={() => dispatch(addToCart(product))}
-                    size="20"
-                  />
+                <Button onClick={() => dispatch(addToCart(product))}>
+                  <HiOutlinePlus size="20" />
                 </Button>
                 <Button onClick={() => dispatch(removeOne(product))}>
                   <HiMinus size="20" />
